@@ -19,6 +19,13 @@ function GivePerkToEnemy(perk_data, entity_who_picked, entity_item, num_pickups)
     perk_data.func(entity_item, entity_who_picked, nil, num_pickups)
   end
 
+  -- Looked at pudy248's code for this one, thank you pudy!! :entity_hamis:
+  if perk_data.particle_effect ~= nil then
+    local particle_id = EntityLoad("data/entities/particles/perks/" .. perk_data.particle_effect .. ".xml")
+    EntityAddTag(particle_id, "perk_entity")
+    EntityAddChild(entity_who_picked, particle_id)
+  end
+
   local entity_icon = EntityLoad("data/entities/misc/perks/enemy_icon.xml", x, y)
   local sc = EntityGetFirstComponentIncludingDisabled(entity_icon, "SpriteComponent")
   if sc then
