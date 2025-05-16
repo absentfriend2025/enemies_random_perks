@@ -49,7 +49,12 @@ function GiveRandomPerkToEnemy(entity_id)
 
     for i, perk_data in ipairs(perk_list) do
       if perk_data.usable_by_enemies ~= nil and perk_data.usable_by_enemies == true then
-        table.insert(valid_perks, perk_data)
+        local no_glass_cannon = ModSettingGet("enemies_random_perks.no_glass_cannon")
+        if no_glass_cannon and perk_data.id == "GLASS_CANNON" then
+          --print("Glass Cannon disabled.")
+        else
+          table.insert(valid_perks, perk_data)
+        end
       end
     end
 
