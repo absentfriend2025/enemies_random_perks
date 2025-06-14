@@ -9,7 +9,14 @@ settings = {
     ui_description = "Enemies will no longer get the Glass Cannon perk.",
     value_default = false,
     scope = MOD_SETTING_SCOPE_RUNTIME,
-  }
+  },
+  {
+    id = "no_ghost_perks",
+    ui_name = "Disable Ghost-type Perks",
+    ui_description = "Enemies will no longer get ghost-type perks.\nAdded this option because of bugs regarding ghost-type perks.\nCheck the Steam workshop of this mod for more information.",
+    value_default = true,
+    scope = MOD_SETTING_SCOPE_RUNTIME_RESTART,
+  },
 }
 
 function ModSettingsUpdate(init_scope)

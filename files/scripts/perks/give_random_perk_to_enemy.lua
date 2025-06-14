@@ -45,13 +45,17 @@ function GiveRandomPerkToEnemy(entity_id)
   local lukki = EntityGetComponent(entity_id, "LimbBossComponent")
   if worm == nil and dragon == nil and ghost == nil and lukki == nil then
     local valid_perks = {}
-    local taken_perks = {}
+
+    local no_glass_cannon = ModSettingGet("enemies_random_perks.no_glass_cannon")
+    local no_ghost_perks = ModSettingGet("enemies_random_perks.no_ghost_perks")
 
     for i, perk_data in ipairs(perk_list) do
       if perk_data.usable_by_enemies ~= nil and perk_data.usable_by_enemies == true then
-        local no_glass_cannon = ModSettingGet("enemies_random_perks.no_glass_cannon")
+
         if no_glass_cannon and perk_data.id == "GLASS_CANNON" then
-          --print("Glass Cannon disabled.")
+          -- Glass Cannon disabled
+        elseif no_ghost_perks and (perk_data.id == "HUNGRY_GHOST" or perk_data.id == "ANGRY_GHOST") then
+          -- Ghost-type perks disabled
         else
           table.insert(valid_perks, perk_data)
         end
@@ -62,11 +66,7 @@ function GiveRandomPerkToEnemy(entity_id)
       local rnd = Random(1, #valid_perks)
       local perk_data = valid_perks[rnd]
 
-      -- Looked at pudy248's code for this one, thank you pudy!! :entity_hamis:
-      local stack_count = (taken_perks[perk_data.id] or 0) + 1
-			taken_perks[perk_data.id] = stack_count
-
-      GivePerkToEnemy(perk_data, entity_id, 0, stack_count)
+      GivePerkToEnemy(perk_data, entity_id, 0, 1)
     end
   end
 end
