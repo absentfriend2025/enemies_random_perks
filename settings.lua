@@ -4,6 +4,17 @@ dofile("data/scripts/lib/mod_settings.lua")
 local mod_id = "enemies_random_perks"
 settings = {
   {
+    id = "perk_chance",
+    ui_name = "Chance",
+    ui_description = "Chance to give enemies perks.",
+    value_default = 100,
+		value_min = 0,
+		value_max = 100,
+		value_display_multiplier = 1,
+		value_display_formatting = " $0%",
+    scope = MOD_SETTING_SCOPE_RUNTIME_RESTART,
+  },
+  {
     id = "no_glass_cannon",
     ui_name = "Disable Glass Cannon",
     ui_description = "Enemies will no longer get the Glass Cannon perk.",
