@@ -1,12 +1,8 @@
 dofile_once("mods/enemies_random_perks/files/scripts/perks/give_random_perk_to_enemy.lua")
 
 function OnWorldPostUpdate()
-  local players = EntityGetWithTag("player_unit") or {}
-  if not players then return end
-  local x, y
-  for _, player in ipairs(players) do
-    x, y = EntityGetTransform(player)
-  end
+  local player = EntityGetWithTag("player_unit")[1]
+  local x, y = EntityGetTransform(player)
 
   local enemies = EntityGetInRadiusWithTag(x, y, 1024, "enemy")
   if not enemies then return end

@@ -1,4 +1,4 @@
----@diagnostic disable: lowercase-global
+---@diagnostic disable: undefined-global, lowercase-global
 dofile("data/scripts/lib/mod_settings.lua")
 
 local mod_id = "enemies_random_perks"
@@ -6,7 +6,7 @@ settings = {
   {
     id = "perk_chance",
     ui_name = "Chance",
-    ui_description = "Chance to give enemies perks.",
+    ui_description = "Chance to give perks to enemies.",
     value_default = 100,
 		value_min = 0,
 		value_max = 100,
@@ -24,7 +24,7 @@ settings = {
   {
     id = "no_ghost_perks",
     ui_name = "Disable Ghost-type Perks",
-    ui_description = "Enemies will no longer get ghost-type perks.\nAdded this option because of bugs regarding ghost-type perks.\nCheck the Steam workshop of this mod for more information.",
+    ui_description = "Enemies will no longer get ghost-type perks.\nAdded because of bugs regarding ghost-type perks.\nCheck the Steam workshop page of this mod for more information.",
     value_default = true,
     scope = MOD_SETTING_SCOPE_RUNTIME_RESTART,
   },
