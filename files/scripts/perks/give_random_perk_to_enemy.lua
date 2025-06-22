@@ -4,8 +4,6 @@ dofile_once("data/scripts/perks/perk_list.lua")
 function GivePerkToEnemy(perk_data, entity_who_picked, entity_item, num_pickups)
   local x, y = EntityGetTransform(entity_who_picked)
 
-  local perk_id = perk_data.id
-
   if perk_data.game_effect ~= nil then
     local game_effect_comp = GetGameEffectLoadTo(entity_who_picked, perk_data.game_effect, true)
     if game_effect_comp ~= nil then
